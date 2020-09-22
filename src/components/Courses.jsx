@@ -57,7 +57,7 @@ const Courses = ({props}) => {
       const keywords = course.description.split(" ").filter(word => word.length > 3)
       .concat((course.title).split(" ").filter(word => word.length > 3));
       const searchKeywords = filterData.searchString.split(" ").filter(word => word.length > 3);
-        return searchKeywords.reduce ((acc, outerItem) => acc || keywords.reduce((acc, innerItem) => acc || innerItem.startsWith(outerItem), false),false) 
+        return searchKeywords.reduce ((acc, outerItem) => acc || keywords.reduce((acc, innerItem) => acc || innerItem.toLowerCase().startsWith(outerItem.toLowerCase()), false),false) 
       }
       else return 1;
     });
