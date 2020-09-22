@@ -3,6 +3,7 @@ import CourseCard from './CourseCard';
 
 
 const Grid = ({data, goto}) => {
+    //this component displayed the grid of the courses
     return ( 
         <div className="container">
             <div className="row">

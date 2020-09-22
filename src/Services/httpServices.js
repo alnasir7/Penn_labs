@@ -1,5 +1,7 @@
 import axios from "axios";
 
+
+//this file is used to make api calls simpler and to intercept and handle all unexpected errors that can arise for axios calls
 axios.interceptors.response.use(null, (error) => {
   const expectedError =
     error.response &&

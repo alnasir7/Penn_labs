@@ -3,6 +3,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import rootReducder from "./rootReducer";
 
+//setting up the redux store
+
 const initialState = {};
 const middleware = [thunk];
 const store = createStore(

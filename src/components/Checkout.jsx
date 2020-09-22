@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux';
 
 
 const Checkout = (props) => {
+
+    // this component is a simple page to allow the user to checkout and confirm their purchase
     const confirm = () => {
+        //return to the main screen, I used window.location to resest the state of all redux data
         window.location="/";
     }
     const cart = useSelector (store => store.cartReducer);
@@ -11,7 +14,7 @@ const Checkout = (props) => {
         <div style={{textAlign:"center", marginTop:"10vh"}}>
             <h1>You are about to Checkout with the following courses, are you sure?</h1>
             <div style={{ width:"50%", margin:"0 auto"}}>
-            <ul style={{marginTop:"10vh"}} className="list-group list-group-flush">
+            <ul style={{marginTop:"10vh", textAlign:"start"}} className="list-group list-group-flush">
                 {cart.map(item => 
                     
                         <li className="list-group-item">

@@ -12,15 +12,18 @@ const CoursePage = ({props}) => {
     const dispatch = useDispatch();
     const courses = useSelector(store => store.courseReducer);
     const cart = useSelector(store => store.cartReducer);
+     // I am assuming in a real application I will be provided with data that has Ids.
+    //for this application I will use the number of the course as the unique identifier
     const course = courses.filter(course => course.number == props.match.params.id)[0];
 
+
+    //this function allows the user to call the penn labs api and access additional information about the course
     useEffect (()=> {
+        //create an async function to fetch the data since letting having useEffect as an async function creates problems
         const fetchData = async () => {
             try {
                 const extraCourseData = await courseServices.getCourse(course);
-                changeExtraData(extraCourseData.courses[0]);
-           
-                
+                changeExtraData(extraCourseData.courses[0]);       
             } catch (error) {
                 console.log(error);
             }
@@ -28,6 +31,7 @@ const CoursePage = ({props}) => {
         fetchData();
     },[]);
 
+    //add a course to the cart
     const handleAdd = () => {
         if (cart.includes(course) ){
             dispatch ({type : removeFromCart , payload: course});
@@ -40,8 +44,11 @@ const CoursePage = ({props}) => {
   
 
     
-    // I am assuming in a real application I will be provided with data that has Ids.
-    //for this application I will use the number of the course as the unique identifier
+   
+
+    //in different parts of the return of this functions there will be expressions such as courseData && courseData.instructors
+    //this is so that the application does not break if the api call fails and since I am not sure the properties I am
+    //trying to access are available for every course
     return ( 
         
         <div>

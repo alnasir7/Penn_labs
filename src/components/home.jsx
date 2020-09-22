@@ -5,6 +5,7 @@ import Courses from './Courses';
 
 
 const Home = ({props, modalState, changeModalState}) => {
+    //this is a container component for the courses and cart modal
   
     return ( 
         <React.Fragment>

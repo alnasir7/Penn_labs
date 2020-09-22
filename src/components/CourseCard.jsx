@@ -20,6 +20,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+
+//creating styles for Material UI components
 const useStyles = makeStyles((theme) => ({
   root: {
    
@@ -41,17 +43,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+//a single course card for the grid in the course browser
 const CourseCard = ({course, goto}) => {
     const cart = useSelector (store => store.cartReducer);
     const dispatch = useDispatch();
     const classes = useStyles();
+    //settig the description and view more elements with an inital value of false (hidden)
     const [expanded, setExpanded] = useState (false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
       };
 
+      // function to add course to the cart by despatching to redux
     const handleAdd = () => {
         if (cart.includes(course) ){
             dispatch ({type : removeFromCart , payload: course});

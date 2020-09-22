@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 
 
-const CartItem = ({course, closeModal, goto, addElement, removeElement, moveUp, moveDown}) => {
+const CartItem = ({index, course, closeModal, goto, addElement, removeElement, moveUp, moveDown}) => {
     
     //This is the component for a single course on the cart list where you can interact (change priority, remove, view details)
     //with that course
@@ -16,6 +16,7 @@ const CartItem = ({course, closeModal, goto, addElement, removeElement, moveUp, 
     return ( 
 <div class="card" style={{textAlign:"start", marginBottom:"20px"}}>
   <div class="card-body">
+    <h5 className="card-title">Prioirty: {index+1}</h5>
     <h5 class="card-title">{course.dept} {course.number} </h5>
     <p class="card-text">{course.title}</p>
     

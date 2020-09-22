@@ -11,6 +11,8 @@ import Checkout from './Checkout';
 
 
 const RootApp = () => {
+    //this the root component of the application where the browser and all routes are declared it also holds the state of
+    // the modal component
  
     const dispatch = useDispatch();
      dispatch({type : loadCourses, payload: data});

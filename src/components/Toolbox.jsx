@@ -11,9 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
+//This is the component where all the search and filter data are set
 
-
-
+//create styles for Material UI components
 const useStyles = makeStyles((theme) => ({
 search: {
     position: 'relative',
@@ -62,6 +62,7 @@ search: {
     transform: 'rotate(180deg)',
   },
 }));
+
 
 const Toolbox = () => {
     const dispatch = useDispatch();
