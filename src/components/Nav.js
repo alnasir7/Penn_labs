@@ -18,8 +18,8 @@ const Navbar = ({changeModalState}) => {
         <div style={{marginRight:"10px"}} className="flexItem">
         {courses.length || null}
         </div>
-        <div className="flexItem " onClick = {changeModalState}>
-        <i class="fas fa-shopping-cart"></i>
+        <div className="flexItem " style ={{cursor: "pointer"}} onClick = {changeModalState}>
+        <i class="fas fa-shopping-cart" ></i>
         </div>
       </div>
     </nav>

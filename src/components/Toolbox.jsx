@@ -115,7 +115,7 @@ const Toolbox = () => {
     },[searchString, dept, prereqs])
 
     return ( 
-        <div>
+        <div style={{position:"fixed"}}>
             <ul className="list-group list-group-flush">
   <li className="list-group-item">
   <div className={classes.search}>

@@ -14,15 +14,18 @@ const CoursePage = ({props}) => {
     const cart = useSelector(store => store.cartReducer);
     const course = courses.filter(course => course.number == props.match.params.id)[0];
 
-    useEffect (async ()=> {
-        try {
-            const extraCourseData = await courseServices.getCourse(course);
-            changeExtraData(extraCourseData);
-            console.log(extraCourseData.courses[0]["max_enrollment"]);
-            
-        } catch (error) {
-            console.log(error);
+    useEffect (()=> {
+        const fetchData = async () => {
+            try {
+                const extraCourseData = await courseServices.getCourse(course);
+                changeExtraData(extraCourseData.courses[0]);
+           
+                
+            } catch (error) {
+                console.log(error);
+            }
         }
+        fetchData();
     },[]);
 
     const handleAdd = () => {
@@ -66,14 +69,38 @@ const CoursePage = ({props}) => {
       <th scope="row">Title</th>
       <td> {course.title} </td>
     </tr>
+
+{
+    extraData && extraData.first_meeting_days &&
+    <tr>
+        <th>Meeting Days</th>
+        <td>
+            {extraData.first_meeting_days}
+        </td>
+    </tr>
+}
+
+
     <tr>
       <th scope="row">Course Description</th>
       <td>{course.description}</td>
     </tr>
-    {extraData && extraData.instructors ? extraData.instructors.map(instructor => <tr>
-      <th scope="row">Instructors</th>
-      <td>{instructor}</td>
-    </tr> )  : null}
+
+  {extraData && extraData.instructors && (
+      <tr>
+          <th>
+              Instructors
+          </th>
+          <td>
+              {extraData.instructors.map(instructor => (
+                  <p>{instructor.name}</p>
+              ))}
+          </td>
+
+      </tr>
+  )}
+    
+
     <tr>
       <th scope="row">Prequesits</th>
             <td colspan="2">{course.prereqs ? course.prereqs.map (prereq => <div>{prereq}</div>) : <span>No Prerequesites</span>}</td>
@@ -82,12 +109,12 @@ const CoursePage = ({props}) => {
       <th scope="row">Cross-listed</th>
             <td colspan="2">{course["cross-listed"] ? course["cross-listed"].map (item => <div>{item}</div>) : <span>No Cross-listed Courses</span>}</td>
     </tr>
-    {extraData ?( <tr>
+    {extraData && <tr>
       <th scope="row">Max Enrollement</th>
       <td>
-          {course.prereqs ? course.prereqs.map(item => {console.log(extraData); return 0; }): null}
+          {extraData.max_enrollment}
       </td>
-    </tr> ): null}
+    </tr> }
   </tbody>
 </table>
 </div>

@@ -6,6 +6,7 @@ import data from "../data/courses.json"
 import Nav from './Nav'
 import Home from "./home"
 import CoursePage from './CoursePage';
+import Checkout from './Checkout';
 
 
 
@@ -21,6 +22,7 @@ const RootApp = () => {
       <div style={{paddingTop:"10vh"}}>
       <Route path = "/" exact render = {((props)=>  <Home modalState = {modalState} changeModalState={changeModalState} props={props} /> )} /> 
       <Route path = "/course/:id" render = {(props) => <CoursePage props= {props} />} />
+      <Route path = "/checkout" component = {Checkout} />
       </div>
       </React.Fragment>
       </BrowserRouter>

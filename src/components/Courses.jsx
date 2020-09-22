@@ -37,9 +37,11 @@ const Courses = ({props}) => {
       const length = course.prereqs ? course.prereqs.length : 0;   
       return !(filterData && filterData.prereqs && filterData.prereqs.length>0 && (parseInt(filterData.prereqs) < length));})
     .filter ((course) => {
-      const keywords = course.description.split(" ").filter(word => word.length > 3);
+      
       if (filterData && filterData.searchString && filterData.searchString.length>3 ) {
-        return keywords.reduce((acc, item) => acc || item.startsWith(filterData.searchString), false)
+      const keywords = course.description.split(" ").filter(word => word.length > 3);
+      const searchKeywords = filterData.searchString.split(" ").filter(word => word.length > 3);
+        return searchKeywords.reduce ((acc, outerItem) => acc || keywords.reduce((acc, innerItem) => acc || innerItem.startsWith(outerItem), false),false) 
       }
       else return 1;
     });
